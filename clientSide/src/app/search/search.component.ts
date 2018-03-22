@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class SearchComponent implements OnInit {
 
   player: any;
+  match: any;
 
   headers = {
     "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5OWY3NWIwMC0wZWExLTAxMzYtNzgyNi0wYTU4NjQ2MDBlZGUiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTIxNTczNTk3LCJwdWIiOiJzZW1jIiwidGl0bGUiOiJ2YWluZ2xvcnkiLCJhcHAiOiJ2Zy1hcGktcHJvamVjdCIsInNjb3BlIjoiY29tbXVuaXR5IiwibGltaXQiOjEwfQ.cQaPQgYexRgzRJm1_oc2ndSMN9fyJRUE-xtQlqiWAbI",
@@ -29,6 +30,8 @@ export class SearchComponent implements OnInit {
     this.http.get(this.url + shard + '/players?filter[playerNames]=' + name)
       .subscribe(data => this.player);
     console.log(this.player);
+    this.http.get(this.url + shard + '/matches?sort=-createdAt&filter[playerNames]=' + name)
+      .subscribe(data => this.match);
   }
 
 }
